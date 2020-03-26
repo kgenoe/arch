@@ -10,6 +10,10 @@
 		78399283242D102F00D32B6E /* arch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78399279242D102F00D32B6E /* arch.framework */; };
 		78399288242D102F00D32B6E /* archTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78399287242D102F00D32B6E /* archTests.swift */; };
 		7839928A242D102F00D32B6E /* arch.h in Headers */ = {isa = PBXBuildFile; fileRef = 7839927C242D102F00D32B6E /* arch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78399294242D107C00D32B6E /* ArchURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78399293242D107C00D32B6E /* ArchURLSession.swift */; };
+		78399296242D112700D32B6E /* ArchDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78399295242D112700D32B6E /* ArchDataTask.swift */; };
+		78399298242D113600D32B6E /* ArchCachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78399297242D113600D32B6E /* ArchCachingManager.swift */; };
+		7839929A242D115100D32B6E /* ArchCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78399299242D115100D32B6E /* ArchCacheItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,10 @@
 		78399282242D102F00D32B6E /* archTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = archTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78399287242D102F00D32B6E /* archTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = archTests.swift; sourceTree = "<group>"; };
 		78399289242D102F00D32B6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78399293242D107C00D32B6E /* ArchURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchURLSession.swift; sourceTree = "<group>"; };
+		78399295242D112700D32B6E /* ArchDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchDataTask.swift; sourceTree = "<group>"; };
+		78399297242D113600D32B6E /* ArchCachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchCachingManager.swift; sourceTree = "<group>"; };
+		78399299242D115100D32B6E /* ArchCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchCacheItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,10 @@
 			children = (
 				7839927C242D102F00D32B6E /* arch.h */,
 				7839927D242D102F00D32B6E /* Info.plist */,
+				78399293242D107C00D32B6E /* ArchURLSession.swift */,
+				78399295242D112700D32B6E /* ArchDataTask.swift */,
+				78399297242D113600D32B6E /* ArchCachingManager.swift */,
+				78399299242D115100D32B6E /* ArchCacheItem.swift */,
 			);
 			path = arch;
 			sourceTree = "<group>";
@@ -148,6 +160,7 @@
 				TargetAttributes = {
 					78399278242D102E00D32B6E = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 					78399281242D102F00D32B6E = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -195,6 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78399296242D112700D32B6E /* ArchDataTask.swift in Sources */,
+				78399294242D107C00D32B6E /* ArchURLSession.swift in Sources */,
+				78399298242D113600D32B6E /* ArchCachingManager.swift in Sources */,
+				7839929A242D115100D32B6E /* ArchCacheItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +357,7 @@
 		7839928E242D102F00D32B6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = G4QAW232RP;
@@ -356,6 +374,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.genoe.apps.arch;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +383,7 @@
 		7839928F242D102F00D32B6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = G4QAW232RP;
@@ -388,6 +408,7 @@
 		78399291242D102F00D32B6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4QAW232RP;
 				INFOPLIST_FILE = archTests/Info.plist;
@@ -406,6 +427,7 @@
 		78399292242D102F00D32B6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4QAW232RP;
 				INFOPLIST_FILE = archTests/Info.plist;
