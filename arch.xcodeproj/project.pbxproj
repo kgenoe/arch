@@ -14,6 +14,8 @@
 		78399296242D112700D32B6E /* ArchDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78399295242D112700D32B6E /* ArchDataTask.swift */; };
 		78399298242D113600D32B6E /* ArchCachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78399297242D113600D32B6E /* ArchCachingManager.swift */; };
 		7839929A242D115100D32B6E /* ArchCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78399299242D115100D32B6E /* ArchCacheItem.swift */; };
+		7839929C242D120700D32B6E /* arch.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 7839929B242D120700D32B6E /* arch.podspec */; };
+		7839929E242D12D000D32B6E /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7839929D242D12D000D32B6E /* LICENSE.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 		78399295242D112700D32B6E /* ArchDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchDataTask.swift; sourceTree = "<group>"; };
 		78399297242D113600D32B6E /* ArchCachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchCachingManager.swift; sourceTree = "<group>"; };
 		78399299242D115100D32B6E /* ArchCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchCacheItem.swift; sourceTree = "<group>"; };
+		7839929B242D120700D32B6E /* arch.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = arch.podspec; sourceTree = "<group>"; };
+		7839929D242D12D000D32B6E /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 		7839926F242D102E00D32B6E = {
 			isa = PBXGroup;
 			children = (
+				7839929B242D120700D32B6E /* arch.podspec */,
+				7839929D242D12D000D32B6E /* LICENSE.txt */,
 				7839927B242D102F00D32B6E /* arch */,
 				78399286242D102F00D32B6E /* archTests */,
 				7839927A242D102F00D32B6E /* Products */,
@@ -191,6 +197,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7839929E242D12D000D32B6E /* LICENSE.txt in Resources */,
+				7839929C242D120700D32B6E /* arch.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
