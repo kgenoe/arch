@@ -61,7 +61,27 @@ class ArchCachingManager: NSObject {
     
     ///
     private func hashURLRequest(_ urlRequest: URLRequest) -> String {
-        return "\(urlRequest.hashValue)"
+        
+        let url = urlRequest.url
+        let urlString = url?.absoluteString ?? ""
+        
+        let httpMethod = urlRequest.httpMethod ?? ""
+        
+        let httpBody = urlRequest.httpBody ?? Data()
+        let httpBodyString = String(data: httpBody, encoding: .utf8)!
+        
+        let httpHeaders = urlRequest.allHTTPHeaderFields ?? [:]
+        let keys = httpHeaders.keys.sorted()
+        var httpHeadersString = ""
+        for key in keys {
+            httpHeadersString += key + (httpHeaders[key] ?? "")
+        }
+        
+        var hash = urlString.hash ^ httpMethod.hash
+        hash = hash ^ httpBodyString.hash
+        hash = hash ^ httpHeadersString.hash
+        
+        return "\(hash)"
     }
     
 }
