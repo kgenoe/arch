@@ -26,12 +26,13 @@ public class ArchDataTask: URLSessionDataTask {
         // if item exists in cache, return the cached item
         if let item = cachingManager.checkCacheFor(request: urlRequest) {
             completionHandler(item.data, nil, nil)
+            return
         }
         
         // Otherwise, request actual data, cache response, return response
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             
-            cachingManager.saveItemToCache(request: self.urlRequest, data: data)
+            cachingManager.saveToCache(request: self.urlRequest, data: data)
             self.completionHandler(data, nil, nil)
             
         }.resume()
