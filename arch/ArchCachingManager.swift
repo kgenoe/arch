@@ -11,8 +11,8 @@ import Foundation
 class ArchCachingManager: NSObject {
     
     
-    /// The local path to the cache. Located within the user document directory.
-    var cachePath: URL {
+    /// The URL where new cache files are saved. As files can only be written within the app sandbox, new cache files must be manually copied to the applicaiton bundle to be used in future builds. When run on the simulator, this directory is typically located in ~/Library/Developer/CoreSimulator/...
+    var cacheOutputURL: URL {
         let fm = FileManager.default
         var path = fm.urls(for: .documentDirectory, in: .userDomainMask).first!
         path.appendPathComponent("arch-cache")
@@ -26,15 +26,13 @@ class ArchCachingManager: NSObject {
      - Parameter request: The `URLRequest` for which a response is being asked for
      
      - Returns: The corresponding `ArchCacheItem` for the provided `URLRequest`. If no item exists in the cache for the provided request, nil is returned.
-     
      */
     func checkCacheFor(request: URLRequest) -> ArchCacheItem? {
         
         let cacheItemTitle =  hashURLRequest(request)
         
         // Check if the response exists in the cache
-        let cacheItemURL = cachePath.appendingPathComponent(cacheItemTitle)
-        guard FileManager.default.fileExists(atPath: cacheItemURL.path) else {
+        guard let cacheItemURL = Bundle.main.url(forResource: cacheItemTitle, withExtension: nil) else {
             print("Existing response file does not exist")
             return nil
         }
@@ -66,7 +64,7 @@ class ArchCachingManager: NSObject {
     func saveToCache(request: URLRequest, data: Data?) {
         
         let cacheItemTitle = hashURLRequest(request)
-        let cacheItemURL = cachePath.appendingPathComponent(cacheItemTitle)
+        let cacheItemURL = cacheOutputURL.appendingPathComponent(cacheItemTitle)
         let item = ArchCacheItem(data: data)
         
         let fm = FileManager.default
@@ -74,8 +72,8 @@ class ArchCachingManager: NSObject {
         do {
             
             // create directory if needed
-            if !fm.fileExists(atPath: cachePath.path) {
-                try fm.createDirectory(atPath: cachePath.path, withIntermediateDirectories: true, attributes: nil)
+            if !fm.fileExists(atPath: cacheOutputURL.path) {
+                try fm.createDirectory(atPath: cacheOutputURL.path, withIntermediateDirectories: true, attributes: nil)
             }
             
             
@@ -83,7 +81,7 @@ class ArchCachingManager: NSObject {
             let cacheItemData = try JSONEncoder().encode(item)
             FileManager.default.createFile(atPath: cacheItemURL.path, contents: cacheItemData, attributes: nil)
             
-            print("Update Cache: \(cacheItemURL.path)")
+            print("New cache file written:\n \(cacheItemURL.path)")
         } catch {
             print("Error saving ArchCacheItem: \(error)")
         }
