@@ -10,18 +10,21 @@ import Foundation
 
 public class ArchDataTask: URLSessionDataTask {
     
+    public var testingClass: AnyClass
+    
     public var urlRequest: URLRequest
     
     public var completionHandler: ((Data?, URLResponse?, Error?) -> Void)
     
-    public init(urlRequest: URLRequest, completionHandler: @escaping ((Data?, URLResponse?, Error?) -> Void)) {
+    public init(testingClass: AnyClass, urlRequest: URLRequest, completionHandler: @escaping ((Data?, URLResponse?, Error?) -> Void)) {
+        self.testingClass = testingClass
         self.urlRequest = urlRequest
         self.completionHandler = completionHandler
     }
     
     public override func resume() {
         
-        let cachingManager = ArchCachingManager()
+        let cachingManager = ArchCachingManager(testingClass: testingClass)
         
         // if item exists in cache, return the cached item
         if let item = cachingManager.checkCacheFor(request: urlRequest) {

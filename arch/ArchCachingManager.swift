@@ -16,8 +16,26 @@ class ArchCachingManager: NSObject {
         let fm = FileManager.default
         var path = fm.urls(for: .documentDirectory, in: .userDomainMask).first!
         path.appendPathComponent("arch-cache")
+        path.appendPathComponent("\(testingClass)")
         return path
     }
+    
+    
+    /// The class using Arch for testing. It has two uses: 1) Existing cache files will be searched for in `testingClass`' bundle. 2) New cache files will be outputted in a folder with the same name as `testingClass`
+    var testingClass: AnyClass
+    
+    
+    /**
+     Creates an ArchCachingManager, used to interact with the Arch cache.
+     
+     - Parameter testingClass: The class using Arch for testing. It has two uses:
+        1) Existing cache files will be searched for in `testingClass`' bundle
+        2) New cache files will be outputted in a folder with the same name as `testingClass`
+     */
+    init(testingClass: AnyClass) {
+        self.testingClass = testingClass
+    }
+    
     
     
     /**
@@ -30,9 +48,10 @@ class ArchCachingManager: NSObject {
     func checkCacheFor(request: URLRequest) -> ArchCacheItem? {
         
         let cacheItemTitle =  hashURLRequest(request)
+        let bundle = Bundle(for: testingClass)
         
         // Check if the response exists in the cache
-        guard let cacheItemURL = Bundle.main.url(forResource: cacheItemTitle, withExtension: nil) else {
+        guard let cacheItemURL = bundle.url(forResource: cacheItemTitle, withExtension: nil) else {
             print("Existing response file does not exist")
             return nil
         }
